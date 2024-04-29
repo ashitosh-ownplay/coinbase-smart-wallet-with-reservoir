@@ -4,6 +4,8 @@ import React from "react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useWriteContract } from "wagmi";
 import Connect from "./components/connect";
+import { ReservoirSellButton } from "./components/reservoir/ReservoirSellButton";
+import { initReservoirClient } from "./utils/reservoir";
 
 const abi = [
   {
@@ -20,6 +22,8 @@ function App() {
   const { writeContract } = useWriteContract();
   const { disconnect } = useDisconnect();
 
+  initReservoirClient();
+
   if (account.status !== "connected") {
     return <Connect />;
   }
@@ -27,7 +31,7 @@ function App() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="max-w-md w-full space-y-8 p-10 bg-gray-800 shadow-2xl rounded-lg">
-        <button
+        {/* <button
           type="button"
           className="mt-5 w-full py-2 bg-gray-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:scale-105 mb-3"
           onClick={() =>
@@ -43,7 +47,12 @@ function App() {
           }
         >
           mint
-        </button>
+        </button> */}
+        <ReservoirSellButton
+          wallet={account}
+          tokenAddress={"0x9dc4Dc13d825Be567EC280D7c88B77294A1cf9ED"}
+          tokenId={"3"}
+        />
         {account.isConnected ? (
           <button onClick={() => disconnect()}>disconnect</button>
         ) : (
