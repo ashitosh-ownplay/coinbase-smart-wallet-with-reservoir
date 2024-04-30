@@ -21,7 +21,7 @@ function App() {
   const account = useAccount();
   const { writeContract } = useWriteContract();
   const { disconnect } = useDisconnect();
-
+  console.log("account: ", account.address);
   initReservoirClient();
 
   if (account.status !== "connected") {
@@ -30,7 +30,10 @@ function App() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="max-w-md w-full space-y-8 p-10 bg-gray-800 shadow-2xl rounded-lg">
+      <div
+        className="max-w-md w-full space-y-8 p-10 bg-gray-800 shadow-2xl rounded-lg"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         {/* <button
           type="button"
           className="mt-5 w-full py-2 bg-gray-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:scale-105 mb-3"

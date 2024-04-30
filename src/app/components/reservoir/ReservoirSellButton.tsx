@@ -18,9 +18,9 @@ export const ReservoirSellButton = ({
   const { chain, address } = useAccount();
 
   const client = createWalletClient({
-    account: wallet,
+    account: wallet.address,
     chain: sepolia,
-    transport: custom(window.ethereum!)
+    transport: http(),
   });
 
   const sellNFTReservoir = async () => {
